@@ -16,10 +16,10 @@ public class CustomerService {
         return customerDao.selectAllCustomers();
     }
 
-    public Customer getCustomerById(Integer id){
+    public Customer getCustomerById(Integer id) throws ResourceNotFoundException {
         return customerDao.selectCustomerById(id)
                 .orElseThrow(
-                        () -> new IllegalArgumentException("No such ID exists")
+                        () -> new ResourceNotFoundException("The ID you are looking for is not present in the database")
                 );
     }
 

@@ -13,12 +13,12 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
-    @GetMapping("/customer/{customerId}")
-    public Customer getCustomer(@PathVariable("customerId") Integer customerId){
+    @GetMapping("api/v1/customer/{customerId}")
+    public Customer getCustomer(@PathVariable("customerId") Integer customerId) throws ResourceNotFoundException {
        return customerService.getCustomerById(customerId);
     }
 
-    @GetMapping("/customers")
+    @GetMapping("api/v1/customers")
     public List<Customer> getCustomers(){
         return customerService.getAllCustomer();
     }
