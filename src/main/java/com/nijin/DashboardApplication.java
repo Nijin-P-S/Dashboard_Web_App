@@ -17,26 +17,26 @@ public class DashboardApplication {
 	}
 
 
-	@Bean
-	CommandLineRunner runner(CustomerRepository customerRepository){
-		return args -> {
-
-			Customer nijin = new Customer(
-					"Nijin P S",
-					"abc@gmail.com",
-					24
-			);
-			Customer jessu =
-					new Customer(
-							"Jessica Nijin",
-							"abc@gmail.com",
-							23
-					);
-
-			List<Customer> customerList = List.of(nijin, jessu);
-			customerRepository.saveAll(customerList);
-		};
-	}
+//	@Bean
+//	CommandLineRunner runner(CustomerRepository customerRepository){
+//		return args -> {
+//
+//			Customer nijin = new Customer(
+//					"Nijin P S",
+//					"abc@gmail.com",
+//					24
+//			);
+//			Customer jessu =
+//					new Customer(
+//							"Jessica Nijin",
+//							"abc@gmail.com",
+//							23
+//					);
+//
+//			List<Customer> customerList = List.of(nijin, jessu);
+//			customerRepository.saveAll(customerList);
+//		};
+//	}
 
 
 }

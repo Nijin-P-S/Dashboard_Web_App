@@ -36,7 +36,7 @@ public class CustomerController {
 
     @PutMapping("{customerId}")
     public void updateCustomer(@PathVariable(name = "customerId") Integer customerId,
-                               @RequestBody CustomerUpdateRequest updateRequest){
+                               @RequestBody CustomerUpdateRequest updateRequest) throws RequestValidationException, DuplicateResourceException {
         customerService.updateCustomer(customerId, updateRequest);
     }
 }
