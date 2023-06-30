@@ -13,28 +13,35 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    CustomerRowMapper customerRowMapper;
+
     @Override
     public List<Customer> selectAllCustomers() {
         var sql = """
                 SELECT id, name, email, age FROM customer
                 """;
-        List<Customer> customers = jdbcTemplate.query(sql,
-                (rs, rowNum)->{
-                    Customer customer = new Customer(
-                            rs.getInt("id"),
-                            rs.getString("name"),
-                            rs.getString("email"),
-                            rs.getInt("age")
-                    );
-                    return customer;
-                }
-        );
+        List<Customer> customers = jdbcTemplate.query(sql, customerRowMapper);
         return customers;
     }
 
     @Override
     public Optional<Customer> selectCustomerById(Integer id) {
-        return Optional.empty();
+//        var sql = """
+//                SELECT id, name, email, age FROM customer
+//                WHERE id = ?
+//                """;
+//
+//        return Optional.empty();
+
+        var sql = """
+                SELECT id, name, email, age FROM customer
+                WHERE id = ?
+                """;
+
+        return jdbcTemplate.query(sql, customerRowMapper, id)
+                .stream()
+                .findFirst();
     }
 
     @Override
@@ -54,21 +61,60 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
 
     @Override
     public boolean existsPersonWithEmail(String email) {
-        return false;
+        var sql = """
+                SELECT count(id)
+                FROM customer
+                WHERE email = ?
+                """;
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, email);
+
+        return count!=null && count>1;
     }
 
     @Override
     public boolean existsPersonWithId(Integer id) {
-        return false;
+        var sql = """
+                SELECT count(id)
+                FROM customer
+                WHERE id = ?
+                """;
+        Integer count = jdbcTemplate.queryForObject(sql, Integer.class, id);
+
+        return count!=null && count>1;
     }
 
     @Override
     public void deleteCustomerById(Integer customerId) {
-
+        var sql = """
+                DELETE FROM customer
+                WHERE id = ?
+                """;
+        int result = jdbcTemplate.update(sql, customerId);
+        System.out.println("deleteCustomerByID result: "+result);
     }
 
     @Override
     public void updateCustomer(Customer update) {
-
+        if(update.getName() != null){
+            String sql = """
+                    UPDATE customer SET name = ? WHERE id = ?
+                    """;
+            int result = jdbcTemplate.update(sql, update.getName(), update.getId());
+            System.out.println("Update customer name result :"+result);
+        }
+        if(update.getEmail() != null){
+            String sql = """
+                    UPDATE customer SET email = ? WHERE id = ?
+                    """;
+            int result = jdbcTemplate.update(sql, update.getEmail(), update.getId());
+            System.out.println("Update customer email result :"+result);
+        }
+        if(update.getAge() != null){
+            String sql = """
+                    UPDATE customer SET age = ? WHERE id = ?
+                    """;
+            int result = jdbcTemplate.update(sql, update.getAge(), update.getId());
+            System.out.println("Update customer age result :"+result);
+        }
     }
 }
