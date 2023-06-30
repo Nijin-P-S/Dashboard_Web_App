@@ -1,10 +1,12 @@
 package com.nijin.customer;
 
+import com.nijin.exception.DuplicateResourceException;
+import com.nijin.exception.RequestValidationException;
+import com.nijin.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/customers")

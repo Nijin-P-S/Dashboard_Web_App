@@ -1,11 +1,11 @@
-package com.nijin.customer;
+package com.nijin.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.CONFLICT)
 public class DuplicateResourceException extends Exception{
-    DuplicateResourceException(String message){
+    public DuplicateResourceException(String message){
         super(message);
     }
 }

@@ -1,17 +1,19 @@
 package com.nijin.customer;
 
+import com.nijin.exception.DuplicateResourceException;
+import com.nijin.exception.RequestValidationException;
+import com.nijin.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService {
 
     @Autowired
-    @Qualifier(value = "jpa")
+    @Qualifier(value = "jdbc")
     CustomerDao customerDao;
 
     public List<Customer> getAllCustomer(){

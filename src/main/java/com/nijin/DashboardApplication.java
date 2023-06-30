@@ -1,5 +1,7 @@
 package com.nijin;
 
+import com.github.javafaker.Faker;
+import com.github.javafaker.Name;
 import com.nijin.customer.Customer;
 import com.nijin.customer.CustomerRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -8,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+import java.util.Random;
 
 @SpringBootApplication
 public class DashboardApplication {
@@ -17,26 +20,25 @@ public class DashboardApplication {
 	}
 
 
-//	@Bean
-//	CommandLineRunner runner(CustomerRepository customerRepository){
-//		return args -> {
-//
-//			Customer nijin = new Customer(
-//					"Nijin P S",
-//					"abc@gmail.com",
-//					24
-//			);
-//			Customer jessu =
-//					new Customer(
-//							"Jessica Nijin",
-//							"abc@gmail.com",
-//							23
-//					);
-//
-//			List<Customer> customerList = List.of(nijin, jessu);
-//			customerRepository.saveAll(customerList);
-//		};
-//	}
+	@Bean
+	CommandLineRunner runner(CustomerRepository customerRepository){
+		return args -> {
+
+			var faker = new Faker();
+			Random random = new Random();
+			Name name = faker.name();
+			String firstName = name.firstName();
+			String lastName = name.lastName();
+
+			Customer customer = new Customer(
+					firstName+" "+lastName,
+					firstName.toLowerCase()+"."+lastName.toLowerCase()+"@xyz.com",
+					random.nextInt(16, 99)
+			);
+
+			customerRepository.save(customer);
+		};
+	}
 
 
 }
