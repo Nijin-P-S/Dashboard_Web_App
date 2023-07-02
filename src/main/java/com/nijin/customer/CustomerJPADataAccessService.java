@@ -10,8 +10,14 @@ import java.util.Optional;
 @Repository("jpa")
 public class CustomerJPADataAccessService implements CustomerDao{
 
-    @Autowired
-    CustomerRepository customerRepository;
+//    @Autowired
+//    CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+
+    public CustomerJPADataAccessService(CustomerRepository customerRepository){
+        this.customerRepository = customerRepository;
+    }
+
     @Override
     public List<Customer> selectAllCustomers() {
         return customerRepository.findAll();

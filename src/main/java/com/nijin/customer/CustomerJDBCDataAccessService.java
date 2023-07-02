@@ -10,11 +10,13 @@ import java.util.Optional;
 @Repository("jdbc")
 public class CustomerJDBCDataAccessService implements CustomerDao{
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private final JdbcTemplate jdbcTemplate;
+    private final CustomerRowMapper customerRowMapper;
 
-    @Autowired
-    CustomerRowMapper customerRowMapper;
+    public CustomerJDBCDataAccessService(JdbcTemplate jdbcTemplate, CustomerRowMapper customerRowMapper) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.customerRowMapper = customerRowMapper;
+    }
 
     @Override
     public List<Customer> selectAllCustomers() {

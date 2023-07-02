@@ -12,9 +12,15 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    @Autowired
-    @Qualifier(value = "jdbc")
-    CustomerDao customerDao;
+//    @Autowired
+//    @Qualifier(value = "jdbc")
+//    CustomerDao customerDao;
+
+    private final CustomerDao customerDao;
+
+    public CustomerService(@Qualifier("jdbc") CustomerDao customerDao){
+        this.customerDao = customerDao;
+    }
 
     public List<Customer> getAllCustomer(){
         return customerDao.selectAllCustomers();
