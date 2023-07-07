@@ -12,8 +12,15 @@ import java.util.List;
 @RequestMapping("/api/v1/customers")
 public class CustomerController {
 
-    @Autowired
-    CustomerService customerService;
+//    @Autowired
+//    CustomerService customerService;
+
+    private final CustomerService customerService;
+
+    public CustomerController(CustomerService customerService){
+        this.customerService = customerService;
+    }
+
     @GetMapping("{customerId}")
     public Customer getCustomer(@PathVariable("customerId") Integer customerId) throws ResourceNotFoundException {
        return customerService.getCustomerById(customerId);
