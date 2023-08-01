@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bae7cd8-37ea-4cd1-a400-41ecba42aa9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Dockerrun.aws.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1690557010334</updated>
       <workItem from="1690557011715" duration="1930000" />
-      <workItem from="1690824809014" duration="2709000" />
+      <workItem from="1690824809014" duration="4444000" />
     </task>
     <servers />
   </component>
