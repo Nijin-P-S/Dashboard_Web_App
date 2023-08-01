@@ -1,23 +1,35 @@
-version: '3'
-
 services:
   db:
     container_name: postgres
     image: postgres
-    restart: unless-stopped
     environment:
-      - POSTGRES_USER=nijin
-      - POSTGRES_PASSWORD=password
+      POSTGRES_USER: nijin
+      POSTGRES_PASSWORD: password
+      PGDATA: /data/postgres
     volumes:
-      - db:/var/lib/postgresql/data
+      - db:/data/postgres
     ports:
-      - "5432:5432"
+      - "5332:5432"
     networks:
       - db
+    restart: unless-stopped
 
+  dashboard_web_app:
+    container_name: dashboard_web_app
+    image: iamnijin/dashboard
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customer
+    ports:
+      - "8088:8080"
+    networks:
+      - db
+    depends_on:
+      - db
+    restart: unless-stopped
 networks:
   db:
     driver: bridge
+
 
 volumes:
   db:
