@@ -1,88 +1,55 @@
-// import UserProfile from "./UserProfile.jsx";
-// import {useState, useEffect} from 'react'
-//
-// const users = [
-//     {
-//         name: "Jamila",
-//         age: 22,
-//         gender: "FEMALE"
-//     },
-//     {
-//         name: "Ana",
-//         age: 45,
-//         gender: "FEMALE"
-//     },
-//     {
-//         name: "Alex",
-//         age: 18,
-//         gender: "MALE"
-//     },
-//     {
-//         name: "Bilal",
-//         age: 27,
-//         gender: "MALE"
-//     }
-// ]
-//
-//
-// const UserProfiles = ({users})=> (
-//     <div>
-//         {users.map((user, index) =>(
-//             <UserProfile
-//                 key={index}
-//                 name={user.name}
-//                 age={user.age}
-//                 gender={user.gender}
-//                 imageNumber={index}
-//             />
-//         ))}
-//     </div>
-// )
-//
-// function App() {
-//
-//     const [counter, setCounter] = useState(0);
-//
-//     const [isLoading, setIsLoading] = useState(false);
-//
-//     useEffect(() => {
-//         setIsLoading(true)
-//         setTimeout(() => {
-//             setIsLoading(false)
-//         }, 4000)
-//     }, [])
-//
-//     if(isLoading){
-//         return "loading ...";
-//     }
-//
-//     return (
-//         <div>
-//             <button onClick={() => setCounter(prevCounter => prevCounter+1)}>
-//                 Increment Counter
-//             </button>
-//             <h1>{counter}</h1>
-//             <UserProfiles users={users}/>
-//         </div>
-//     )
-// }
-//
-// export default App
-
-
-
-
-
-import { Button } from '@chakra-ui/react';
-import SidebarWithHeader from "./shared/SideBar.jsx";
+import { Button, Spinner, Text } from '@chakra-ui/react';
+import SidebarWithHeader from "./components/shared/SideBar.jsx";
+import {useEffect, useState} from "react";
+import {getCustomers} from "./services/client.js";
 
 const App = () => {
+
+    const [customers, setCustomers] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(()=> {
+            getCustomers().then(res => {
+                setCustomers(res.data)
+            }).catch(err => {
+                console.log(err)
+            }).finally(() => {
+                setLoading(false)
+            })
+        }, 400);
+    },[]);
+
+    if(loading){
+        return (
+            <SidebarWithHeader>
+                <Spinner
+                    thickness='4px'
+                    speed='0.65s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+            </SidebarWithHeader>
+        );
+    }
+
+    if(customers.length <= 0){
+        return (
+            <SidebarWithHeader>
+               <Text>No Customers available</Text>
+            </SidebarWithHeader>
+        )
+    }
+
     return (
         <SidebarWithHeader>
-            <Button colorScheme='teal' variant='outline'>Click me</Button>
+            {customers.map((customer, index) => (
+                <p key={index}>{customer.name}</p>
+            ))}
         </SidebarWithHeader>
     )
 }
 
 export default App
-

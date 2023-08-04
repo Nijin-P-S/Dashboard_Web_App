@@ -19,6 +19,7 @@ import {
     MenuDivider,
     MenuItem,
     MenuList,
+    Image
 } from '@chakra-ui/react';
 import {
     FiHome,
@@ -81,10 +82,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
             pos="fixed"
             h="full"
             {...rest}>
-            <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-                    Logo
+            <Flex h="20" flexDirection="column" alignItems="center" mx="8" mb={50} mt={2} justifyContent="space-between">
+                <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold" mt={2}>
+                    Dashboard
                 </Text>
+                <Image
+                    borderRadius='full'
+                    boxSize='75px'
+                    src='https://talkbitz.com/wp-content/uploads/2020/04/Best-Free-Online-Logo-Maker-Sites.png'
+                    alt='Nijin'
+                />
                 <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
             </Flex>
             {LinkItems.map((link) => (
