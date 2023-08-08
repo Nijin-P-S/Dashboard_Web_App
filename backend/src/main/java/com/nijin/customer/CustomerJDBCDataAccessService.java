@@ -23,7 +23,8 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
         var sql = """
                 SELECT id, name, email, age FROM customer
                 """;
-        List<Customer> customers = jdbcTemplate.query(sql, customerRowMapper);
+        //jdbcTemplate.query(sql, customerRowMapper);
+        List<Customer> customers = null;
         return customers;
     }
 
@@ -66,7 +67,7 @@ public class CustomerJDBCDataAccessService implements CustomerDao{
         var sql = """
                 SELECT count(id)
                 FROM customer
-                WHERE name = ?
+                WHERE email = ?
                 """;
         Integer count = jdbcTemplate.queryForObject(sql, Integer.class, email);
 
