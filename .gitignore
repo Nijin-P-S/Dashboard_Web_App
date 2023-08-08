@@ -33,3 +33,10 @@ build/
 .vscode/
 
 node_modules
+
+
+.idea
+./backend/target
+./backend/.idea
+./backend/.mvn
+.DS_Store
