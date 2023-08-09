@@ -12,14 +12,14 @@
 	<artifactId>dashboard</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<organization>
-		<name>iamnijin</name>
+		<name>iamnijin </name>
 	</organization>
 	<name>dashboard</name>
 	<description>Dashboard fullstack project</description>
 	<properties>
 		<java.version>17</java.version>
-		<docker.username>iamnijin</docker.username>
-		<docker.image.name>dashboard</docker.image.name>
+		<docker.username>iamnijin </docker.username>
+		<docker.image.name> dashboard</docker.image.name>
 		<docker.image.tag />
 	</properties>
 	<dependencies>
@@ -186,7 +186,7 @@
 					</platforms>
 				</from>
 				<to>
-					<image>docker.io/${docker.username}/${docker.image.name}:${docker.image.tag}</image>
+					<image>docker.io/iamnijin / dashboard:${docker.image.tag}</image>
 					<tags>
 						<tag>latest</tag>
 					</tags>
