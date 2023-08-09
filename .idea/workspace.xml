@@ -92,7 +92,7 @@
       <workItem from="1690557011715" duration="1930000" />
       <workItem from="1690824809014" duration="4444000" />
       <workItem from="1691474137828" duration="14000" />
-      <workItem from="1691490325971" duration="20168000" />
+      <workItem from="1691490325971" duration="20612000" />
     </task>
     <task id="LOCAL-00001" summary="Pinned postgres image version to 15.1 in docker-compose.yml">
       <option name="closed" value="true" />
