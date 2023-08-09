@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bae7cd8-37ea-4cd1-a400-41ecba42aa9b" name="Changes" comment="Updated .gitignore" />
+    <list default="true" id="1bae7cd8-37ea-4cd1-a400-41ecba42aa9b" name="Changes" comment="Updated .gitignore">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -92,7 +94,7 @@
       <workItem from="1690557011715" duration="1930000" />
       <workItem from="1690824809014" duration="4444000" />
       <workItem from="1691474137828" duration="14000" />
-      <workItem from="1691490325971" duration="18477000" />
+      <workItem from="1691490325971" duration="18955000" />
     </task>
     <task id="LOCAL-00001" summary="Pinned postgres image version to 15.1 in docker-compose.yml">
       <option name="closed" value="true" />
